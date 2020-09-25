@@ -1,0 +1,40 @@
+openapi: 3.0.0
+
+info:
+  title: OpenAPI REST Article
+  description: This is the OpenAPI file that goes with the server code.
+  version: '1.0.0'
+
+servers:
+  - url: '/api'
+
+paths:
+  /people:
+    get:
+      operationId: 'people.read'
+      tags:
+        - 'People'
+      summary: The people data structure supported by the server application
+      description: Read the list of people
+      responses:
+        '200':
+          description: Successful read people list operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+
+
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        fname:
+          type: string
+        lname:
+          type: string
+        timestamp:
+          type: string
